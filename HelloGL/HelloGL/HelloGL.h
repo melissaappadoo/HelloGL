@@ -20,11 +20,24 @@ struct Camera
 	Vector3 up;
 };
 
+struct Color
+{
+	GLfloat r, g, b;
+};
+
+struct Vertex
+{
+	GLfloat x, y, z;
+};
+
 class HelloGL
 {
 private:
 	float rotation;
 	Camera* camera;
+	static Vertex indexedVertices[];
+	static Color indexedColors[];
+	static GLushort indices[];
 
 public:
 
@@ -41,4 +54,6 @@ public:
 	void Timer(int preferredRefresh);
 
 	void Keyboard(unsigned char key, int x, int y);
+
+	void DrawIndexedCube();
 };
