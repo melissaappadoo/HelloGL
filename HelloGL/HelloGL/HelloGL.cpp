@@ -73,9 +73,15 @@ void HelloGL::Display()
 
 	glPopMatrix();*/
 
-	glPushMatrix();
+	//DrawIndexedCube();
+
+	/*glPushMatrix();
+	glRotatef(rotation, 1.0f, 0.0f, 0.0f);
+	glutWireTeapot(1);
+	glPopMatrix();*/
+
 	DrawIndexedCube();
-	glPopMatrix();
+
 	glFlush(); //flushes the scene drawn to the graphics card
 
 	glutSwapBuffers();
