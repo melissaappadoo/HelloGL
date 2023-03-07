@@ -127,11 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Cube.h" />
     <ClInclude Include="GLUTCallbacks.h" />
+    <ClInclude Include="Structures.h" />
     <ClInclude Include="HelloGL.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Cube.cpp" />
     <ClCompile Include="HelloGL.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="GLUTCallbacks.cpp" />
