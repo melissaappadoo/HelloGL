@@ -1,14 +1,33 @@
 #include "HelloGL.h"
+#include "MeshLoader.h"
+
 
 HelloGL::HelloGL(int argc, char* argv[])
 {
+	InitGL(argc, argv);
+	InitObjects();
+	glutMainLoop();
+}
+
+HelloGL::~HelloGL(void)
+{
+	delete camera;
+}
+
+void HelloGL::InitObjects()
+{
 	rotation = 0.0f;
+	
+	Mesh* cubeMesh = MeshLoader::Load((char*)"cube.txt");
 	camera = new Camera();
 	camera->eye.x = 5.0f; camera->eye.y = 5.0f; camera->eye.z = -5.0f;
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
-	Cube* cube;
+	cube = new Cube(cubeMesh, 0.0f, 0.0f, 0.0f);
+}
 
+void HelloGL::InitGL(int argc, char* argv[])
+{
 	GLUTCallbacks::Init(this);
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
@@ -28,12 +47,6 @@ HelloGL::HelloGL(int argc, char* argv[])
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
 	glCullFace(GL_BACK);
-	glutMainLoop();
-}
-
-HelloGL::~HelloGL(void)
-{
-	delete camera;
 }
 
 
