@@ -4,16 +4,15 @@
 #include <gl/GLU.h>
 #include "Structures.h"
 
-class Cube
+class Cube : public SceneObject
 {
 private:
-	Mesh* _mesh;
 
 	GLfloat _rotation;
 	Vector3 _position;
 
 public:
-	Cube(Mesh* mesh, float x, float y, float z);
+	Cube(Mesh* mesh, float x, float y, float z) : SceneObject(mesh);
 	~Cube();
 
 	void Draw();

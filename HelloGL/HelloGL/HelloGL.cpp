@@ -23,7 +23,12 @@ void HelloGL::InitObjects()
 	camera->eye.x = 5.0f; camera->eye.y = 5.0f; camera->eye.z = -5.0f;
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
-	cube = new Cube(cubeMesh, 0.0f, 0.0f, 0.0f);
+	SceneObject* objects[1000];
+	//cube = new Cube(cubeMesh, 0.0f, 0.0f, 0.0f);
+	for (int i = 0; i < 200; i++)
+	{
+		objects[i] = new Cube(cubeMesh, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+	}
 }
 
 void HelloGL::InitGL(int argc, char* argv[])
@@ -54,7 +59,10 @@ void HelloGL::Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //this clears the scene
 
-	cube->Draw();
+	for (int i = 0; i < 200; i++)
+	{
+		cube[i].Draw();
+	}
 
 	glFlush(); //flushes the scene drawn to the graphics card
 
@@ -71,7 +79,10 @@ void HelloGL::Update()
 	if (rotation >= 360.0f)
 		rotation = 0.0f;
 
-	cube->Update();
+	for (int i = 0; i < 200; i++)
+	{
+		cube[i].Update();
+	}
 
 	glutPostRedisplay();
 }

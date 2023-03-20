@@ -2,9 +2,8 @@
 #include <fstream>
 
 
-Cube::Cube(Mesh* mesh, float x, float y, float z)
+Cube::Cube(Mesh* mesh, float x, float y, float z) : SceneObject(mesh)
 {
-	_mesh = mesh;
 	_position.x = x;
 	_position.y = y;
 	_position.z = z;
@@ -27,11 +26,10 @@ void Cube::Draw()
 			glColor3fv(&_mesh->Colors[_mesh->Indices[i]].r);
 			glVertex3fv(&_mesh->Vertices[_mesh->Indices[i]].x);
 		}
+		glTranslatef(_position.x, _position.y, _position.z);
 		glRotatef(_rotation, 1.0f, 0.0f, 0.0f);
 		glEnd();
 		glPopMatrix();
-
-		//glTranslatef(_position.x, _position.y, _position.z);
 	}
 }
 
