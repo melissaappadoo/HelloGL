@@ -1,7 +1,6 @@
 #include "HelloGL.h"
 #include "MeshLoader.h"
 
-
 HelloGL::HelloGL(int argc, char* argv[])
 {
 	InitGL(argc, argv);
@@ -61,7 +60,7 @@ void HelloGL::Display()
 
 	for (int i = 0; i < 200; i++)
 	{
-		cube[i].Draw();
+		objects[i].Draw();
 	}
 
 	glFlush(); //flushes the scene drawn to the graphics card
@@ -81,7 +80,7 @@ void HelloGL::Update()
 
 	for (int i = 0; i < 200; i++)
 	{
-		cube[i].Update();
+		objects[i].Update();
 	}
 
 	glutPostRedisplay();
