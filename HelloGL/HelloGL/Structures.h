@@ -2,6 +2,8 @@
 #include <Windows.h>
 #include <gl/GL.h>
 #include <gl/GLU.h>
+#include "GL\freeglut.h"
+
 struct Vector3
 {
 	float x;
@@ -31,5 +33,34 @@ struct Mesh
 	Vertex* Vertices;
 	Color* Colors;
 	GLushort* Indices;
-	int VertexCount, ColorCount, IndexCount;
+	TexCoord* TexCoords;
+	int VertexCount, ColorCount, IndexCount, TexCoordCount;
+};
+
+struct TexCoord
+{
+	GLfloat u, v;
+};
+
+struct Vector4
+{
+	float x;
+	float y;
+	float z;
+	float w;
+};
+
+struct Lighting
+{
+	Vector4 Ambient;
+	Vector4 Diffuse;
+	Vector4 Specular;
+};
+
+struct Material
+{
+	Vector4 Ambient;
+	Vector4 Diffuse;
+	Vector4 Specular;
+	GLfloat Shininess;
 };

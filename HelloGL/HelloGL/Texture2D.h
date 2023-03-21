@@ -1,9 +1,5 @@
 #pragma once
-
-#include <Windows.h>
-#include <gl/GL.h>
-#include <gl/GLU.h>
-#include "GL\freeglut.h"
+#include "MeshLoader.h"
 
 class Texture2D
 {

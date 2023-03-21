@@ -1,5 +1,4 @@
 #include "MeshLoader.h"
-
 #include <iostream>
 #include <fstream>
 
@@ -9,6 +8,7 @@ namespace MeshLoader
 {
 	void LoadVertices(ifstream& inFile, Mesh& mesh);
 	void LoadColours(ifstream& inFile, Mesh& mesh);
+	void LoadTextures(ifstream& inFile, Mesh& mesh);
 	void LoadIndices(ifstream& inFile, Mesh& mesh);
 
 	void LoadVertices(ifstream& inFile, Mesh& mesh)
@@ -41,6 +41,22 @@ namespace MeshLoader
 				inFile >> mesh.Colors[i].r;
 				inFile >> mesh.Colors[i].g;
 				inFile >> mesh.Colors[i].b;
+			}
+		}
+	}
+
+	void LoadTextures(ifstream& inFile, Mesh& mesh)
+	{
+		inFile >> mesh.TexCoordCount;
+
+		if (mesh.TexCoordCount > 0)
+		{
+			mesh.TexCoords = new TexCoord[mesh.TexCoordCount];
+
+			for (int i = 0; i < mesh.TexCoordCount; i++)
+			{
+				inFile >> mesh.TexCoords[i].u;
+				inFile >> mesh.TexCoords[i].v;
 			}
 		}
 	}
