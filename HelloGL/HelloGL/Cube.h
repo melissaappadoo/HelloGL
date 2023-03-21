@@ -3,6 +3,7 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>
 #include "Structures.h"
+#include "SceneObject.h"
 
 class Cube : public SceneObject
 {
