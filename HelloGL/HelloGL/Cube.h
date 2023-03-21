@@ -13,7 +13,7 @@ private:
 	Vector3 _position;
 
 public:
-	Cube(Mesh* mesh, float x, float y, float z) : SceneObject(mesh);
+	Cube(Mesh* mesh, float x, float y, float z);
 	~Cube();
 
 	void Draw();
