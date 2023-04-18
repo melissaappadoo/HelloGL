@@ -49,8 +49,8 @@ void HelloGL::InitGL(int argc, char* argv[])
 	gluPerspective(45, 1, 1, 1000);
 	glMatrixMode(GL_MODELVIEW);
 	glEnable(GL_TEXTURE_2D);
-	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 }
 
