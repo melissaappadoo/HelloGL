@@ -4,6 +4,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 {
 	InitGL(argc, argv);
 	InitObjects();
+	InitLighting();
 	glutMainLoop();
 }
 
@@ -51,7 +52,32 @@ void HelloGL::InitGL(int argc, char* argv[])
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
 	glCullFace(GL_BACK);
+}
+
+void HelloGL::InitLighting()
+{
+	_lightPosition = new Vector4();
+	_lightPosition->x = 0.0;
+	_lightPosition->y = 0.0;
+	_lightPosition->z = 1.0;
+	_lightPosition->w = 0.0;
+
+	_lightData = new Lighting();
+	_lightData->Ambient.x = 0.2;
+	_lightData->Ambient.y = 0.2;
+	_lightData->Ambient.z = 0.2;
+	_lightData->Ambient.w = 1.0;
+	_lightData->Diffuse.x = 1.0;
+	_lightData->Diffuse.y = 1.0;
+	_lightData->Diffuse.z = 1.0;
+	_lightData->Diffuse.w = 1.0;
+	_lightData->Specular.x = 0.2;
+	_lightData->Specular.y = 0.2;
+	_lightData->Specular.z = 0.2;
+	_lightData->Specular.w = 1.0;
 }
 
 
@@ -85,6 +111,23 @@ void HelloGL::Update()
 	}
 
 	glutPostRedisplay();
+
+	glLightfv(GL_LIGHT0, GL_POSITION, &(_lightPosition->x));
+	glLightfv(GL_LIGHT0, GL_POSITION, &(_lightPosition->y));
+	glLightfv(GL_LIGHT0, GL_POSITION, &(_lightPosition->z));
+
+	glLightfv(GL_LIGHT0, GL_AMBIENT, &(_lightData->Ambient.x));
+	glLightfv(GL_LIGHT0, GL_AMBIENT, &(_lightData->Ambient.y));
+	glLightfv(GL_LIGHT0, GL_AMBIENT, &(_lightData->Ambient.z));
+	glLightfv(GL_LIGHT0, GL_AMBIENT, &(_lightData->Ambient.w));
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(_lightData->Diffuse.x));
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(_lightData->Diffuse.y));
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(_lightData->Diffuse.z));
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(_lightData->Diffuse.w));
+	glLightfv(GL_LIGHT0, GL_SPECULAR, &(_lightData->Specular.x));
+	glLightfv(GL_LIGHT0, GL_SPECULAR, &(_lightData->Specular.y));
+	glLightfv(GL_LIGHT0, GL_SPECULAR, &(_lightData->Specular.z));
+	glLightfv(GL_LIGHT0, GL_SPECULAR, &(_lightData->Specular.w));
 }
 
 void HelloGL::Timer(int preferredRefresh)
@@ -104,4 +147,20 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 
 	if (key == 's')
 		camera->eye.z -= 1.0f;
+}
+
+void HelloGL::Draw()
+{
+	Vector3 v = { -1.4f, 0.7f, -1.0f };
+	Color c = { 255.0f, 255.0f, 0.0f };
+	DrawString("OpenGL FOGGs Project", &v, &c);
+}
+
+void HelloGL::DrawString(const char* text, Vector3* position, Color* color)
+{
+	glPushMatrix();
+	glTranslatef(position->x, position->y, position->z);
+	glRasterPos2f(0.0f, 0.0f);
+	glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_24, (unsigned char*)text);
+	glPopMatrix();
 }
