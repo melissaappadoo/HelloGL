@@ -90,6 +90,8 @@ void HelloGL::Display()
 		objects[i]->Draw();
 	}
 
+	Draw();
+
 	glFlush(); //flushes the scene drawn to the graphics card
 
 	glutSwapBuffers();
@@ -152,15 +154,18 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 void HelloGL::Draw()
 {
 	Vector3 v = { -1.4f, 0.7f, -1.0f };
-	Color c = { 255.0f, 255.0f, 0.0f };
+	Color c = { 255.0f, 255.0f, 255.0f };
 	DrawString("OpenGL FOGGs Project", &v, &c);
 }
 
 void HelloGL::DrawString(const char* text, Vector3* position, Color* color)
 {
+	glDisable(GL_LIGHTING);
 	glPushMatrix();
-	glTranslatef(position->x, position->y, position->z);
-	glRasterPos2f(0.0f, 0.0f);
-	glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_24, (unsigned char*)text);
+		glColor3f(color->r, color->g, color->b);
+		glTranslatef(position->x, position->y, position->z);
+		glRasterPos2f(0.0f, 0.0f);
+		glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_24, (unsigned char*)text);
 	glPopMatrix();
+	glEnable(GL_LIGHTING);
 }
