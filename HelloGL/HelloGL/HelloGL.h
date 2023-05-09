@@ -1,6 +1,7 @@
 #pragma once
 #include "GLUTCallbacks.h"
 #include "Cube.h"
+#include "Camera.h"
 
 #define REFRESHRATE 16
 
@@ -9,7 +10,7 @@ class HelloGL
 {
 private:
 	float rotation;
-	Camera* camera;
+	_Camera* camera;
 	//Cube* cube;
 	SceneObject* objects[1000];
 	//MeshLoader::Load();

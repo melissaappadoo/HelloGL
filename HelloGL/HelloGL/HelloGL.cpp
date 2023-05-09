@@ -20,7 +20,7 @@ void HelloGL::InitObjects()
 	Mesh* cubeMesh = MeshLoader::Load((char*)"cube.txt");
 	Texture2D* texture = new Texture2D();
 	texture->Load((char*)"penguins.raw", 512, 512);
-	camera = new Camera();
+	camera = new _Camera();
 	camera->eye.x = 0.0f; camera->eye.y = 0.0f; camera->eye.z = -35.0f;
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
@@ -144,11 +144,7 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	if (key == 'a')
 		rotation -= 2;
 
-	if (key == 'w')
-		camera->eye.z += 1.0f;
-
-	if (key == 's')
-		camera->eye.z -= 1.0f;
+	camera->OnKeyboard(key);
 }
 
 void HelloGL::Draw()

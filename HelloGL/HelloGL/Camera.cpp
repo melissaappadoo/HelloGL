@@ -26,8 +26,11 @@ void _Camera::OnKeyboard(unsigned char Key)
 		break;
 
 	case 'a':
-	{
+		eye.x += speed;
+		break;
 
-	}
+	case 'd':
+		eye.x -= speed;
+		break;
 	}
 }
